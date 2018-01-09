@@ -1,13 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  entry: './src/js/router.ts',
+  entry: './src/router.ts',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })]
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     port: 8080,
-    noInfo: true,
     stats: 'minimal',
     host: '0.0.0.0',
   },
@@ -25,12 +33,5 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
 };
