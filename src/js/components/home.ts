@@ -1,12 +1,65 @@
 import * as m from 'mithril';
-// import { addTodo } from 'utils/actions';
+import { addTodo, updateTodo } from 'utils/actions';
 import store from 'stores/todo';
 
 export default {
   oninit() {
     this.sub = store.subscribe(m.redraw);
+    this.value = '';
+
+    this.addTodo = () => {
+      addTodo.emit({
+        title: this.value,
+      });
+      this.value = '';
+    };
+  },
+  onremove() {
+    this.sub.cancel();
   },
   view() {
-    return m('div', [m('h1', 'Todos')]);
+    return m('div', [
+      m('h1', 'Todos'),
+      m(
+        'form',
+        {
+          onsubmit: () => {
+            this.addTodo();
+            return false;
+          },
+        },
+        [
+          m('input', {
+            type: 'text',
+            placeholder: 'Todo Title',
+            value: this.value,
+            oninput: e => (this.value = e.target.value),
+          }),
+          m(
+            'button',
+            {
+              type: 'submit',
+            },
+            'Add Todo'
+          ),
+        ]
+      ),
+      m(
+        'ul',
+        store.all().map((todo, index) => {
+          return m('li', { key: todo.title }, [
+            m('label', [
+              m('input', {
+                type: 'checkbox',
+                checked: todo.completed,
+                onchange: e =>
+                  updateTodo.emit(index, { completed: e.target.checked }),
+              }),
+              todo.title,
+            ]),
+          ]);
+        })
+      ),
+    ]);
   },
 };

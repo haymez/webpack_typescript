@@ -4,7 +4,6 @@ export default class DispatcherEvent {
   private _callbacks: Array<Function> = [];
 
   subscribe(callback: Function): Subscription {
-    console.log(this);
     this._callbacks.push(callback);
 
     return new Subscription(() => {
