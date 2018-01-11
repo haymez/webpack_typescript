@@ -16,7 +16,7 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     port: 8080,
-    stats: 'minimal',
+    stats: 'errors-only',
     host: '0.0.0.0',
   },
   plugins: [
