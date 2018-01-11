@@ -1,10 +1,10 @@
 import * as m from 'mithril';
-import { addTodo, updateTodo } from 'utils/actions';
-import store from 'stores/todo';
+import { addTodo, updateTodo } from 'actions';
+import { TodoStore } from 'stores';
 
 export default {
   oninit() {
-    this.sub = store.subscribe(m.redraw);
+    this.sub = TodoStore.subscribe(m.redraw);
     this.value = '';
 
     this.addTodo = () => {
@@ -46,7 +46,7 @@ export default {
       ),
       m(
         'ul',
-        store.all().map((todo, index) => {
+        TodoStore.all().map((todo, index) => {
           return m('li', { key: todo.title }, [
             m('label', [
               m('input', {

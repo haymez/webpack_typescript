@@ -1,7 +1,6 @@
-import Todo from 'models/todo';
-import DispatcherEvent from 'utils/dispatcher_event';
-import Subscription from 'utils/subscription';
-import { addTodo, updateTodo } from 'utils/actions';
+import { Todo } from 'models';
+import { DispatcherEvent, Subscription } from 'utils';
+import { addTodo, updateTodo } from 'actions';
 
 class TodoStore {
   private _data: Array<Todo> = [];

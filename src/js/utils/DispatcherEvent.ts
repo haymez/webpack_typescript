@@ -1,4 +1,4 @@
-import Subscription from 'utils/subscription';
+import { Subscription } from 'utils';
 
 export default class DispatcherEvent {
   private _callbacks: Array<Function> = [];
