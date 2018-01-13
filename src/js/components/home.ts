@@ -1,3 +1,4 @@
+import 'css/base';
 import * as m from 'mithril';
 import { addTodo, updateTodo } from 'actions';
 import { TodoStore } from 'stores';

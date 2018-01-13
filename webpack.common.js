@@ -9,8 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.less'],
     plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
+    alias: {
+      css: path.resolve(__dirname, 'src/css/')
+    }
   },
   module: {
     rules: [
