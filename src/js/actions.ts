@@ -1,4 +1,3 @@
-import { DispatcherEvent } from 'utils';
+import DispatcherEvent from 'utils/DispatcherEvent';
 
-export const addTodo = new DispatcherEvent();
-export const updateTodo = new DispatcherEvent();
+export const saveTodo = new DispatcherEvent();

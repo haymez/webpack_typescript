@@ -1,9 +1,9 @@
-import { Subscription } from 'utils';
+import Subscription from 'utils/Subscription';
 
-export default class DispatcherEvent {
+export default class DispatcherEvent<T> {
   private _callbacks: Array<Function> = [];
 
-  subscribe(callback: Function): Subscription {
+  subscribe(callback: (...args: Array<T>) => void): Subscription {
     this._callbacks.push(callback);
 
     return new Subscription(() => {
@@ -12,10 +12,9 @@ export default class DispatcherEvent {
     });
   }
 
-  emit(...args): void {
+  emit(...args: Array<T>): void {
+    let hasArgs: boolean = args.length > 0;
     this._callbacks.forEach(callback => {
-      let hasArgs: boolean = args.length > 0;
-
       setTimeout(() => {
         if (hasArgs) {
           callback(...args);

@@ -1,7 +1,8 @@
 import 'css/base';
 import * as m from 'mithril';
-import { addTodo, updateTodo } from 'actions';
-import { TodoStore } from 'stores';
+import { saveTodo } from 'actions';
+import TodoStore from 'stores/TodoStore';
+import Todo from 'models/Todo';
 
 export default {
   oninit() {
@@ -9,9 +10,11 @@ export default {
     this.value = '';
 
     this.addTodo = () => {
-      addTodo.emit({
-        title: this.value,
-      });
+      saveTodo.emit(
+        new Todo({
+          title: this.value,
+        })
+      );
       this.value = '';
     };
   },
@@ -53,8 +56,11 @@ export default {
               m('input', {
                 type: 'checkbox',
                 checked: todo.completed,
-                onchange: e =>
-                  updateTodo.emit(index, { completed: e.target.checked }),
+                onchange: e => {
+                  let todo = TodoStore.all()[index];
+                  console.log(todo);
+                  saveTodo.emit(todo.update({ completed: e.target.checked }));
+                },
               }),
               todo.title,
             ]),
