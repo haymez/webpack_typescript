@@ -1,3 +1,5 @@
+import 'css/components/home';
+
 import 'css/base';
 import * as m from 'mithril';
 import { saveTodo } from 'actions';
@@ -22,51 +24,53 @@ export default {
     this.sub.cancel();
   },
   view() {
-    return m('div', [
-      m('h1', 'Todos'),
-      m(
-        'form',
-        {
-          onsubmit: () => {
-            this.addTodo();
-            return false;
-          },
-        },
-        [
-          m('input', {
-            type: 'text',
-            placeholder: 'Todo Title',
-            value: this.value,
-            oninput: e => (this.value = e.target.value),
-          }),
-          m(
-            'button',
-            {
-              type: 'submit',
+    return m('.home-page', [
+      m('.todos', [
+        m(
+          'form',
+          {
+            onsubmit: () => {
+              this.addTodo();
+              return false;
             },
-            'Add Todo'
-          ),
-        ]
-      ),
-      m(
-        'ul',
-        TodoStore.all().map((todo, index) => {
-          return m('li', { key: todo.title }, [
-            m('label', [
-              m('input', {
-                type: 'checkbox',
-                checked: todo.completed,
-                onchange: e => {
-                  let todo = TodoStore.all()[index];
-                  console.log(todo);
-                  saveTodo.emit(todo.update({ completed: e.target.checked }));
-                },
-              }),
-              todo.title,
-            ]),
-          ]);
-        })
-      ),
+          },
+          [
+            m('h1', 'Todos'),
+            m('input', {
+              type: 'text',
+              placeholder: 'Todo Title',
+              value: this.value,
+              oninput: e => (this.value = e.target.value),
+            }),
+            m(
+              'button',
+              {
+                type: 'submit',
+              },
+              'Add Todo'
+            ),
+          ]
+        ),
+        m(
+          'ul',
+          TodoStore.all().map((todo, index) => {
+            return m('li', { key: todo.title }, [
+              m('label', [
+                m('input', {
+                  type: 'checkbox',
+                  checked: todo.completed,
+                  onchange: e => {
+                    let todo = TodoStore.all()[index];
+                    console.log(todo);
+                    saveTodo.emit(todo.update({ completed: e.target.checked }));
+                  },
+                }),
+                todo.title,
+              ]),
+            ]);
+          })
+        ),
+      ]),
     ]);
   },
 };
