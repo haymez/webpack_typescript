@@ -17,6 +17,8 @@
     "noEmitOnError": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "baseUrl": "./src/js"

@@ -1,7 +1,13 @@
 import * as m from 'mithril';
 
-export default {
-  view(vnode) {
+interface TodoAttrs {
+  checked: boolean;
+  title: string;
+  onclick(): void;
+}
+
+export default class implements m.ClassComponent<TodoAttrs> {
+  view(vnode: m.Vnode<TodoAttrs>) {
     return m('li.todo', [
       m('label', [
         m('input', {
@@ -12,5 +18,5 @@ export default {
         vnode.attrs.title,
       ]),
     ]);
-  },
+  }
 };

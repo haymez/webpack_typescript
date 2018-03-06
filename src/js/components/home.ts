@@ -5,24 +5,29 @@ import * as m from 'mithril';
 import { saveTodo } from 'actions';
 import TodoStore from 'stores/TodoStore';
 import Todo from 'models/Todo';
+import Subscription from 'utils/Subscription';
 
-export default {
+export default class implements m.ClassComponent {
+  sub: Subscription;
+  value: string;
+
+  addTodo() {
+    saveTodo.emit(
+      new Todo({
+        title: this.value,
+      })
+    );
+    this.value = '';
+  }
+
   oninit() {
     this.sub = TodoStore.subscribe(m.redraw);
     this.value = '';
-
-    this.addTodo = () => {
-      saveTodo.emit(
-        new Todo({
-          title: this.value,
-        })
-      );
-      this.value = '';
-    };
-  },
+  }
   onremove() {
     this.sub.cancel();
-  },
+  }
+
   view() {
     return m('.home-page', [
       m('.todos', [
@@ -40,7 +45,7 @@ export default {
               type: 'text',
               placeholder: 'Todo Title',
               value: this.value,
-              oninput: e => (this.value = e.target.value),
+              oninput: (e: any) => (this.value = e.target.value),
             }),
             m(
               'button',
@@ -59,7 +64,7 @@ export default {
                 m('input', {
                   type: 'checkbox',
                   checked: todo.completed,
-                  onchange: e => {
+                  onchange: (e: any) => {
                     let todo = TodoStore.all()[index];
                     console.log(todo);
                     saveTodo.emit(todo.update({ completed: e.target.checked }));
@@ -72,5 +77,5 @@ export default {
         ),
       ]),
     ]);
-  },
-};
+  }
+}
