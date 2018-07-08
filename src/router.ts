@@ -7,3 +7,7 @@ if (app !== null) {
     '/': Home,
   });
 }
+
+if ((<any>module).hot) {
+  (<any>module).hot.accept();
+}
