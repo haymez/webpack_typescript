@@ -1,9 +1,9 @@
 import * as m from 'mithril';
-import home from 'components/home';
+import Home from 'components/Home';
 
 const app = document.querySelector('#app');
 if (app !== null) {
   m.route(app, '/', {
-    '/': home,
+    '/': Home,
   });
 }

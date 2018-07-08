@@ -21,6 +21,6 @@
     "noImplicitThis": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "baseUrl": "./src/js"
+    "baseUrl": "./src/ts"
   }
 }

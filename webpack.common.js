@@ -10,10 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.ts', '.js', '.less', '.css'],
+    extensions: ['.ts', '.js', '.scss', '.css'],
     plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     alias: {
-      css: path.resolve(__dirname, 'src/css/'),
+      // alias: path.resolve(__dirname, 'path/to/aliasFolder/'),
     },
   },
   module: {

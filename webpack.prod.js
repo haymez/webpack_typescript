@@ -7,12 +7,12 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.less$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader', options: { minimize: true } },
-            'less-loader',
+            'sass-loader',
           ],
         }),
       },
