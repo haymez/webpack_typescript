@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+  mode: 'development',
   module: {
     rules: [
       {
@@ -22,9 +23,11 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  optimization: {
+    namedModules: true,
+  },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',

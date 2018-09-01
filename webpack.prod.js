@@ -1,25 +1,24 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader', options: { minimize: true } },
-            'sass-loader',
-          ],
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { minimize: true } },
+          'sass-loader',
+        ],
       },
     ],
   },
   plugins: [
     new UglifyJSPlugin(),
-    new ExtractTextPlugin({ filename: '[name]-[contentHash].css' }),
+    new MiniCssExtractPlugin({ filename: '[name]-[contentHash].css' }),
   ],
 });

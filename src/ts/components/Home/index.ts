@@ -42,7 +42,7 @@ export default class implements m.ClassComponent {
             },
           },
           [
-            m('h1', 'Todos'),
+            m('h1', 'Todos!'),
             m(Input, {
               type: 'text',
               placeholder: 'Todo Title',
