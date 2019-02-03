@@ -1,18 +1,20 @@
+@import '../../../scss/constants.scss';
+
 body::after {
   content: '';
-  background: url(../../../assets/mountains.jpg) no-repeat center center fixed; 
+  background: url(../../../assets/mountains.jpg) no-repeat center center fixed;
   background-size: cover;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
   opacity: 0.2;
 }
 
 h1 {
-  color: #8b8b8b;
+  color: $material-54;
   font-size: 3em;
   margin: 0.5em;
 }
@@ -23,7 +25,7 @@ ul {
   padding: 0;
 }
 
-.home-page {
+.components-home {
   display: flex;
   position: absolute;
   align-items: center;
@@ -38,13 +40,47 @@ ul {
 
   .todos {
     text-align: center;
-    background-color: #ffffff;
+    background-color: $white;
     padding: 1rem 5rem;
-    box-shadow: 0 0 50px #808080;
-    border-radius: 3px;
+    border-radius: $border-radius;
+    border: 1px solid $material-12;
 
-    ul {
+    h1 {
+      margin: 0;
+    }
+
+    .form-elements {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      align-items: center;
+
+      input {
+        margin-right: 8px;
+      }
+    }
+
+    .todo-list {
       text-align: left;
+
+      .todo {
+        transition: 0.25s;
+        padding: 16px;
+        margin: 8px 0;
+        border: 1px solid $material-12;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 700;
+
+        &:hover {
+          box-shadow: 0 0 8px $material-12;
+        }
+
+        &.checked {
+          background-color: $blue;
+          color: $white;
+          border: none;
+        }
+      }
     }
   }
 }

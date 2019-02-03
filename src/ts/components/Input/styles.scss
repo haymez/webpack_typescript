@@ -1,8 +1,11 @@
-input.input[type='text'] {
+@import '../../../scss/constants.scss';
+
+.components-input {
   outline: none;
-  border: none;
-  border-radius: 3px;
-  padding: 8px;
-  margin: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.34);
+  border: 1px solid $material-12;
+  border-radius: $border-radius;
+  padding: 8px 16px;
+  margin: 8px 0;
+  font-size: $normal;
+  color: $material-87;
 }

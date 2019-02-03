@@ -1,9 +1,18 @@
-button.button {
-  padding: 8px;
+@import '../../../scss/constants.scss';
+
+.components-button {
+  transition: 0.25s;
+  padding: 8px 16px;
   outline: none;
-  border: none;
-  background-color: #17a5b8;
-  color: #ffffff;
-  border-radius: 3px;
+  border: 1px solid $material-12;
+  background-color: $white;
+  color: $black;
+  border-radius: $border-radius;
+  font-size: $normal;
+  color: $material-87;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 10px $material-12;
+  }
 }

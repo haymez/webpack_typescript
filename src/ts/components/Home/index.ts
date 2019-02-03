@@ -31,7 +31,7 @@ export default class implements m.ClassComponent {
   }
 
   view() {
-    return m('.home-page', [
+    return m('.components-home', [
       m('.todos', [
         m(
           'form',
@@ -42,24 +42,26 @@ export default class implements m.ClassComponent {
             },
           },
           [
-            m('h1', 'Todos!'),
-            m(Input, {
-              type: 'text',
-              placeholder: 'Todo Title',
-              value: this.value,
-              oninput: (e: any) => (this.value = e.target.value),
-            }),
-            m(
-              Button,
-              {
-                type: 'submit',
-              },
-              'Add Todo'
-            ),
+            m('h1', 'Todos'),
+            m('.form-elements', [
+              m(Input, {
+                type: 'text',
+                placeholder: 'Todo Title',
+                value: this.value,
+                oninput: (e: any) => (this.value = e.target.value),
+              }),
+              m(
+                Button,
+                {
+                  type: 'submit',
+                },
+                'Add Todo'
+              ),
+            ]),
           ]
         ),
         m(
-          'ul',
+          '.todo-list',
           TodoStore.all().map(todoObj => {
             return m(todo, {
               key: todoObj.title,
