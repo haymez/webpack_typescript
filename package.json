@@ -5,12 +5,14 @@
   "main": "src/router.ts",
   "scripts": {
     "start": "webpack-dev-server --color --config webpack.dev.js",
-    "build": "webpack --progress --config webpack.prod.js"
+    "build": "webpack --progress --config webpack.prod.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^23.3.13",
     "@types/mithril": "^1.1.14",
     "@types/webpack": "^4.4.24",
     "copy-webpack-plugin": "^4.6.0",
@@ -18,10 +20,12 @@
     "ejs-loader": "^0.3.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.0.0",
     "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "ts-jest": "^23.10.5",
     "ts-loader": "^5.3.3",
     "tsconfig-paths-webpack-plugin": "^1.4.0",
     "typescript": "^3.3.1",
